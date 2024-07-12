@@ -10,9 +10,9 @@
           </svg>
         </button>
         <div v-if="isDropdownOpen" class="dropdown-content">
-          <button @click="exportAs('PDF')">PDF</button>
-          <button @click="exportAs('CSV')">CSV</button>
-          <button @click="exportAs('XLS')">XLS</button>
+          <!-- <button @click="exportAs('pdf')">PDF</button> -->
+          <button @click="exportAs('xlsx')">XLS</button>
+          <button @click="exportAs('csv')">CSV</button>
         </div>
       </div>
       <button @click="logout" class="logout-button">
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -36,15 +36,16 @@ export default {
       isDropdownOpen: false,
     };
   },
+  computed: mapGetters(['exportRoute']),
   methods: {
-    ...mapActions(['logout']),
+    ...mapActions(['logout', 'setRoute']),
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
     },
     exportAs(format) {
-      // TODO export functionality
-      console.log(`Exporting as ${format}`);
+      this.setRoute({ format });
       this.isDropdownOpen = false;
+      window.location.href = this.exportRoute;
     },
   },
 };
