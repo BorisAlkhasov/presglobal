@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import { localFields, serverUrl } from '@/utils/constants';
 import { mapActions, mapGetters } from 'vuex';
 
 export default {
@@ -42,10 +43,29 @@ export default {
     toggleDropdown() {
       this.isDropdownOpen = !this.isDropdownOpen;
     },
-    exportAs(format) {
-      this.setRoute({ format });
+    async exportAs(format) {
       this.isDropdownOpen = false;
-      window.location.href = this.exportRoute;
+      try {
+        const empId = localStorage.getItem(localFields.empId);
+        const token = localStorage.getItem(localFields.token);
+        const response = await fetch(`${serverUrl}/export/${empId}/${format}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!response.ok) {
+          throw new Error('Export failed.');
+        }
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `shifts.${format}`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      } catch (error) {
+        console.error('Export failed:', error);
+      }
     },
   },
 };
