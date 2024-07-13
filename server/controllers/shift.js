@@ -167,16 +167,6 @@ exports.endBreak = async (req, res) => {
         shift_id: ongoingShift.shift_id,
         end_time: null,
       },
-      include: [
-        {
-          model: Shifts,
-          where: {
-            end_time: null,
-            shift_date: { [Op.lte]: new Date() },
-          },
-          required: true,
-        },
-      ],
     });
 
     if (!ongoingBreak) {

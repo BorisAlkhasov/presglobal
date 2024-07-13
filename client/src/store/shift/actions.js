@@ -28,7 +28,6 @@ export default {
   },
   async addComment(context, payload) {
     const { shift_id, comment } = payload;
-    console.log(comment);
     await sendPostRequest(`${serverUrl}/shift/comment`, { shift_id, comment });
     context.dispatch('fetchShifts');
   },

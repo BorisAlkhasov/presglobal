@@ -72,7 +72,7 @@ export default {
           comment: this.comment,
         });
       } catch (error) {
-        console.log(error);
+        console.error(error);
         this.error = error.message;
       } finally {
         this.isLoading = false;

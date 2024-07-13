@@ -10,7 +10,7 @@
           </svg>
         </button>
         <div v-if="isDropdownOpen" class="dropdown-content">
-          <!-- <button @click="exportAs('pdf')">PDF</button> -->
+          <button @click="exportAs('pdf')">PDF</button>
           <button @click="exportAs('xlsx')">XLS</button>
           <button @click="exportAs('csv')">CSV</button>
         </div>

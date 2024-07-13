@@ -58,7 +58,7 @@ export default {
     const resData = await response.json();
 
     if (!response.ok) {
-      console.log(resData);
+      console.error(resData);
       throw new Error(resData.error || `Unable to ${mode}. Please try again later.`);
     }
 

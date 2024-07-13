@@ -29,7 +29,7 @@ async function getResponseData(response) {
   const data = await response.json();
 
   if (!response.ok) {
-    console.log(data);
+    console.error(data);
     throw new Error(data.error || 'An unknown error occured.');
   }
 

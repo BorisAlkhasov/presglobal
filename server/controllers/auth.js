@@ -47,7 +47,6 @@ exports.login = async (req, res) => {
       return res.status(401).json({ error: 'Wrong ID Number or Password.' });
     }
 
-    // const token = jwt.sign({ employee_id: foundEmp.employee_id }, process.env.SECRET_KEY), { expiresIn: '1h' };
     const token = jwt.sign({ employee_id: foundEmp.employee_id }, process.env.SECRET_KEY);
 
     res.status(201).json({ token: token, empId: foundEmp.employee_id });
