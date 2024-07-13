@@ -53,7 +53,7 @@ export default {
       try {
         await func();
       } catch (error) {
-        this.error = error.message;
+        alert(error.message);
       } finally {
         this.isLoading = false;
       }

@@ -18,8 +18,9 @@
           placeholder="Enter your comment here"
           v-model="comment"
           class="comment"
+          :disabled="isLoading"
         ></textarea>
-        <button class="btn-comment" @click="onAddComment(shift.shift_id)">Add Comment</button>
+        <button class="btn-comment" @click="onAddComment(shift.shift_id)" :disabled="isLoading">Add Comment</button>
       </div>
       <div class="shift-breaks">
         <p class="breaks-title">Breaks</p>
@@ -72,8 +73,7 @@ export default {
           comment: this.comment,
         });
       } catch (error) {
-        console.error(error);
-        this.error = error.message;
+        alert('An error occured while adding comment.');
       } finally {
         this.isLoading = false;
       }

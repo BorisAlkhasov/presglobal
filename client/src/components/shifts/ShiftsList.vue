@@ -1,6 +1,6 @@
 <template>
   <div class="shits-container">
-    <p v-if="isLoading">Loading...</p>
+    <p v-if="isLoading" class="shifts-loading">Loading shifts...</p>
     <div v-else class="shifts-list">
       <shift-item v-for="shift in shifts" :key="shift.shift_id" :shift="shift" />
     </div>
@@ -26,7 +26,7 @@ export default {
       try {
         await this.fetchShifts({ period: 'day' });
       } catch (error) {
-        this.error = error.message;
+        alert('An error occured while fetching shifts');
       } finally {
         this.isLoading = false;
       }
@@ -46,7 +46,14 @@ export default {
 .shifts-list {
   padding-top: 2rem;
 }
+
 h2 {
   margin-bottom: 1rem;
+}
+
+.shifts-loading {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #0000ff;
 }
 </style>
