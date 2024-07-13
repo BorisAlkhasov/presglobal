@@ -1,4 +1,9 @@
-Repo: https://github.com/BorisAlkhasov/presglobal.git
+Instructions:
+
+To test the application you can visit http://16.170.255.132/
+Deployed on AWS
+
+The app isn't responsive. So please test it on pc / laptop.
 
 There're 2 folders 'server' and 'client'
 
