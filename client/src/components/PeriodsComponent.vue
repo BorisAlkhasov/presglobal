@@ -1,8 +1,13 @@
 <template>
   <div class="periods-container">
     <div class="shifts-dropdown">
-      <label class="labelStyle">Shifts for current</label>
-      <select v-model="selectedOption" @change="setPeriod({ period: selectedOption })" class="selectStyle">
+      <label class="labelStyle" for="selectPeriod">Shifts for current</label>
+      <select
+        v-model="selectedOption"
+        @change="setPeriod({ period: selectedOption })"
+        id="selectPeriod"
+        class="selectStyle"
+      >
         <option v-for="option in options" :key="option" :value="option">
           {{ option }}
         </option>
